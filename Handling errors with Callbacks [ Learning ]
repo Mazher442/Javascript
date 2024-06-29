@@ -1,0 +1,22 @@
+function fetchData(callback) {
+  setTimeout(function() {
+    const error = true;
+    const data = { name: 'John', age: 30 };
+
+  if (error) {
+    callback("An error occured" , null)
+  } else {
+    callback(null, data)
+  }
+  }, 2000);
+}
+
+function handleData(error, data){
+  if (error){
+    console.log(error);
+  } else {
+    console.log('Data recieved: ', data)
+  }
+}
+
+fetchData(handleData)
