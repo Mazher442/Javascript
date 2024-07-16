@@ -1,0 +1,46 @@
+<!--Html-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Current Data and Time</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    #datetime {
+      font-size: 2em;
+    }
+  </style>
+</head>
+<body>
+    <h1>Current Data and Time</h1>
+    <p id="datetime"></p>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+// Javascript
+
+function updateDateTime() {
+
+  var now = new Date();
+
+  var date = now.toLocaleDateString();
+  var time = now.toLocaleTimeString();
+
+  document.getElementById("datetime").innerText = date + " " + time;
+}
+
+
+setInterval(updateDateTime, 1000);
+
+updateDateTime();
+
