@@ -1,0 +1,86 @@
+<!-- HTML  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note-Taking App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #notesList {
+            list-style-type: none;
+            padding: 0;
+        }
+        #notesList li {
+            padding: 10px;
+            font-size: 1.2em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        button {
+            font-size: 1em;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Note-Taking App</h1>
+    <input type="text" id="noteInput" placeholder="Enter a new note">
+    <button onclick="addNote()">Add</button>
+    <ul id="notesList"></ul>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+// Javascript
+
+function addNote() {
+  // Get the input value
+  var noteText = document.getElementById('noteInput').value;
+
+  // Check if the input is empty
+  if (noteText.trim() === '') {
+      alert('Please enter a note.');
+      return;
+  }
+
+  // Create a new list item
+  var li = document.createElement('li');
+
+  // Create a span for the note text
+  var span = document.createElement('span');
+  span.innerText = noteText;
+  li.appendChild(span);
+
+  // Create an edit button
+  var editButton = document.createElement('button');
+  editButton.innerText = 'Edit';
+  editButton.onclick = function() {
+      var newText = prompt('Edit your note:', span.innerText);
+      if (newText !== null) {
+          span.innerText = newText;
+      }
+  };
+  li.appendChild(editButton);
+
+  // Create a delete button
+  var deleteButton = document.createElement('button');
+  deleteButton.innerText = 'Delete';
+  deleteButton.onclick = function() {
+      li.remove();
+  };
+  li.appendChild(deleteButton);
+  // Append the list item to the notes list
+
+  document.getElementById('notesList').appendChild(li);
+
+  document.getElementById('noteInput').value = '';
+
+}
